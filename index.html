@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>算法复杂度判断</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css"/>
+</head>
+<body>
+    <div class="menu">
+        <ul>
+            <li><a href="tanOne">算法复杂度</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div id="tanOne">
+            <p>1、裴波那契数列求第n的值：1,1,2,3,5,8,13...</p>
+            <div>
+                <input type="number" id="inputNum1" placeholder="请输入数字n" oninput="checkInputNum(this);"/>
+                <input type="button" onclick="oneClick1()" value="递归耗时计算"/>
+                <input type="button" onclick="oneClick2()" value="循环耗时计算"/>
+            </div>
+            <div id="oneStr1"></div>
+            <div id="oneStr2"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        //检验输入数字
+        function checkInputNum(obj){
+            var val = obj.value.trim().replace(/\./g, '');
+            obj.value = val;
+        }
+
+        //递归耗时计算
+        function oneClick1(){
+            document.getElementById('oneStr1').innerText = '';
+            var n = parseInt(document.getElementById('inputNum1').value);
+            var start = Date.parse(new Date());
+            var res = recursionFbi(n);
+            var end = Date.parse(new Date());
+            var str = "第" + n +"项结果为：" + res + ", 开始时间戳："+start + ", 结束时间戳：" + end +", 递归计算总耗时" + (end - start)/1000 + "秒";
+            document.getElementById('oneStr1').innerText = str;
+        }
+
+        //循环耗时计算
+        function oneClick2(){
+            document.getElementById('oneStr2').innerText = '';
+            var n = parseInt(document.getElementById('inputNum1').value);
+            var start = Date.parse(new Date());
+            var res = cirleFbi(n);
+            var end = Date.parse(new Date());
+            var str = "第" + n +"项结果为：" + res + ", 开始时间戳："+start + ", 结束时间戳：" + end + ", 循环计算耗时" + (end - start)/1000 + "秒";
+            document.getElementById('oneStr2').innerText = str;
+        }
+        /*
+        chrome浏览器版本 74.0.3729.157  电脑硬件core i5-8400, 内存16G
+                n数	   39	40	43	44	45	46	47	48	49	50	51	52
+        递归计算耗时/秒	0	1	2	3	5	7	13	26	43	71	113	182
+        循环计算耗时/秒	0	0	0	0	0	0	0	0	0	0	0	0
+         */
+    </script>
+</body>
+</html>
