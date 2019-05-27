@@ -47,7 +47,7 @@
             document.getElementById('oneStr2').innerText = '';
             var n = parseInt(document.getElementById('inputNum1').value);
             var start = Date.parse(new Date());
-            var res = cirleFbi(n);
+            var res = circleFbi(n);
             var end = Date.parse(new Date());
             var str = "第" + n +"项结果为：" + res + ", 开始时间戳："+start + ", 结束时间戳：" + end + ", 循环计算耗时" + (end - start)/1000 + "秒";
             document.getElementById('oneStr2').innerText = str;
