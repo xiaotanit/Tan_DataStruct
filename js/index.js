@@ -48,16 +48,6 @@ function testCount1(n){
     }
 }
 
-//算法复杂度：O(n^2)
-function testCount2(n){
-    //指令计数：1 + 2n + n * (1+3n) = 1 + 3n + 3n^2 = 3n^2 + 3n + 1
-    for (var i = 0; i < n; i++){
-        for (var j = 0; j < n; j++){
-            console.log("...testCount2...")
-        }
-    }
-}
-
 //算法复杂度：O(logn)
 function testCount3(n){
     //指令计数：n/2 = log2(n)
@@ -78,3 +68,16 @@ function testCount4(n){
         }
     }
 }
+
+//算法复杂度：O(n^2)
+function testCount2(n){
+    //指令计数：1 + 2n + n * (1+3n) = 1 + 3n + 3n^2 = 3n^2 + 3n + 1
+    for (var i = 0; i < n; i++){
+        for (var j = 0; j < n; j++){
+            console.log("...testCount2...")
+        }
+    }
+}
+
+
+console.log("Hello,  tandaixa!^_^")
