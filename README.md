@@ -16,3 +16,6 @@
 ![image](https://github.com/xiaotanit/Tan_DataStruct/blob/master/image/linkedList/6.jpg)
 ![image](https://github.com/xiaotanit/Tan_DataStruct/blob/master/image/linkedList/7.jpg)
 ![image](https://github.com/xiaotanit/Tan_DataStruct/blob/master/image/linkedList/8.jpg)
+
+#### 4、约瑟夫题目模拟
+![image](https://github.com/xiaotanit/Tan_DataStruct/blob/master/ysf.gif)

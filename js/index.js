@@ -81,3 +81,47 @@ function testCount2(n){
 
 
 console.log("Hello,  tandaixa!^_^")
+
+
+//约瑟夫问题模拟
+var ysfTimer = null;
+function yueSeFuStart(){
+
+    var spanList = [];
+    var box = document.getElementById("ysf_main");
+    for(var i = 0; i < 41; i++){
+        var span = box.querySelector("span[val='"+(i+1)+"']");
+        span.style.visibility = "visible";
+        spanList.push(span);
+    }
+    console.log(spanList);
+
+    if (ysfTimer){
+        clearInterval(ysfTimer);
+    }
+
+    var index = 0, ysfCount = 0;
+
+    setTimeout(function(){
+        ysfTimer = setInterval(function(){
+            index += 2;
+            if (index > spanList.length - 1){
+                index = index - spanList.length;
+            }
+
+            var span = spanList[index];
+            console.log(span)
+
+            if (span){
+                span.style.visibility = "hidden";
+                spanList.splice(index, 1);
+            }
+
+            //时钟器停止条件
+            if (ysfCount > 38){
+                clearInterval(ysfTimer);
+            }
+            ysfCount++;
+        }, 500)
+    }, 1000)
+}

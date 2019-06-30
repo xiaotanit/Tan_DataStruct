@@ -9,6 +9,7 @@
     <div class="menu">
         <ul>
             <li><a href="tanOne">算法复杂度</a></li>
+            <li><a href="tanTwo">约瑟夫问题</a></li>
         </ul>
     </div>
     <div class="main">
@@ -21,6 +22,27 @@
             </div>
             <div id="oneStr1"></div>
             <div id="oneStr2"></div>
+        </div>
+        <div id="tanTwo">
+            <div class="ysf_main" id="ysf_main">
+                <h4>2、约瑟夫问题效果模拟<span class="btn" onclick="ysfStart()">点击开始</span></h4>
+                <div class="ysf_row">
+                    <span val="1">1</span><span val="2">2</span><span val="3">3</span><span val="4">4</span><span val="5">5</span>
+                    <span val="6">6</span><span val="7">7</span><span val="8">8</span><span val="9">9</span><span val="10">10</span>
+                    <span val="11">11</span><span val="12">12</span><span val="13">13</span><span val="14">14</span><span val="15">15</span>
+                </div>
+                <div class="ysf_mid"><span style="visibility: hidden;"></span><span val="16">16</span></div>
+                <div class="ysf_mid"><span val="41">41</span><span val="17">17</span></div>
+                <div class="ysf_mid"><span val="40">40</span><span val="18">18</span></div>
+                <div class="ysf_mid"><span val="39">39</span><span val="19">19</span></div>
+                <div class="ysf_mid"><span val="38">38</span><span val="20">20</span></div>
+                <div class="ysf_mid"><span val="37">37</span><span val="21">21</span></div>
+                <div class="ysf_row">
+                    <span val="36">36</span><span val="35">35</span><span val="34">34</span><span val="33">33</span><span val="32">32</span>
+                    <span val="31">31</span><span val="30">30</span><span val="29">29</span><span val="28">28</span><span val="27">27</span>
+                    <span val="26">26</span><span val="25">25</span><span val="24">24</span><span val="23">23</span><span val="22">22</span>
+                </div>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="js/index.js"></script>
@@ -58,6 +80,13 @@
         递归计算耗时/秒	0	1	2	3	5	7	13	26	43	71	113	182
         循环计算耗时/秒	0	0	0	0	0	0	0	0	0	0	0	0
          */
+
+
+        //约瑟夫问题开始操作
+        function ysfStart(){
+            yueSeFuStart()
+        }
+
     </script>
 </body>
 </html>
