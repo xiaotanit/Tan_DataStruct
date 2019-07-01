@@ -116,3 +116,28 @@ var lengthOfLongestSubstring3 = function(s) {
     }
     return str.length > max ? str.length : max;
 };
+
+/**
+ * @param {string} s
+ * @return {number}
+ * 解法三：一个循环，时间复杂度O(n), 每找到相同的一个字母，则判断长度，截断字符串，下一个循环继续
+ * 这种思路也叫滑动窗口，找到两头相同的字母，则移走左边字母，从新开始
+ * 执行用时 :116 ms, 在所有 JavaScript 提交中击败了91.98%的用户
+ * 内存消耗 :39.8 MB, 在所有 JavaScript 提交中击败了60.36%的用户
+ */
+var lengthOfLongestSubstring4 = function(s) {
+    let obj={}, temp = '', max = start = 0;
+
+    for (let i = 0; i < s.length; i++){
+
+        temp = s[i];
+        if (obj[temp] > -1){
+            start = i - obj[temp];
+            if (start > max) {
+                max = start;
+            }
+        }
+        obj[temp] = i;
+    }
+    return str.length > max ? str.length : max;
+};

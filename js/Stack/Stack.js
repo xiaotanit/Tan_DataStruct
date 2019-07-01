@@ -87,14 +87,60 @@ const Stack = function(){
 
 //测试
 console.log("\n\n.........stack test start......")
-var obj = new Stack();
-obj.push(99); obj.push(22); obj.push(true); obj.push("abc");
-obj.print();
-console.log("栈长度：", obj.length(), ", 栈顶：", obj.top())
-console.log(">>>>> 出栈 >>>>>")
-obj.pop();
-obj.print();
-obj.pop();
-obj.print();
-obj.clear();
-obj.print();
+// var obj = new Stack();
+// obj.push(99); obj.push(22); obj.push(true); obj.push("abc");
+// obj.print();
+// console.log("栈长度：", obj.length(), ", 栈顶：", obj.top())
+// console.log(">>>>> 出栈 >>>>>")
+// obj.pop();
+// obj.print();
+// obj.pop();
+// obj.print();
+// obj.clear();
+// obj.print();
+
+
+//测试2， 用栈实现将十进制转成二进制或者八进制
+/**
+ * 十进制转成二进制或八进制
+ * @param num 十进制数字
+ * @param base =2表示转成二进制，=8表示转成八进制
+ */
+function numChange(num, base){
+    var stack = new Stack();
+    do {
+        stack.push(num%base);
+        num = Math.floor(num/base);
+    }while(num > 0)
+
+    let str = '';
+    while(stack.length()>0){
+        str += stack.pop();
+    }
+    return str;
+}
+
+console.log(numChange(8, 2));
+console.log(numChange(9, 2));
+console.log(numChange(10, 2));
+console.log(numChange(8, 8));
+console.log(numChange(17, 8));
+console.log(numChange(35, 8));
+
+//测试3，判断一个字符串是否回文
+function isCircle(s){
+    let stack = new Stack();
+    for(let i = 0; i < s.length; i++){
+        stack.push(s[i]);
+    }
+    let newStr = '';
+    while(stack.length() > 0){
+        newStr += stack.pop();
+    }
+
+    return newStr == s;
+}
+console.log("\n\n判断一个字符串是否回文....");
+console.log(isCircle("abc"));
+console.log(isCircle("abcdcba"));
+console.log(isCircle("helloolleh"));
