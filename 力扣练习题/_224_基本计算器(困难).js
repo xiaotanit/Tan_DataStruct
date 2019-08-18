@@ -21,35 +21,39 @@
 /**
  * @param s
  * @returns {number}
- * 执行用时 :180 ms, 在所有 JavaScript 提交中击败了50.85%的用户
- * 内存消耗 :54.9 MB, 在所有 JavaScript 提交中击败了5.88%的用户
+ * 执行用时 :116 ms, 在所有 JavaScript 提交中击败了84.75%的用户
+ * 内存消耗 :37.9 MB, 在所有 JavaScript 提交中击败了76.47%的用户
  */
 var calculate = function(s) {
-
-    s = s.replace(/([\(\)\+\-])/g, " $1 ");
-    let list = s.trim().split(/ +/); //转成数组
     let arr = [], temp = '';
 
-    for (let i = 0; i < list.length; i++){
-        temp = list[i];
+    for (let i = 0; i < s.length; i++){
+        temp = s[i];
 
-        arr.push(temp); //入栈
-
-        //即当temp为右括号，或者数字时，调用getResult方法计算数字，出栈
-        if (!(arr.length < 1 || temp == "(" || temp == "+" || temp == "-")){
+        if (temp == ' ') continue;
+        else if(temp >= '0' && temp <= '9'){ //数字，碰到数字往前计算
+            while(s[i+1] >= '0' && s[i+1] <= '9'){
+                temp += s[i+1];
+                i++;
+            }
+            arr.push(temp);
             getResult(arr);
         }
+        else{ //其他左右括号，和+-号
+            arr.push(temp);
+
+            if (temp == ')'){ //碰到右括号往前计算
+                getResult(arr);
+            }
+        }
     }
-
-    getResult(arr);
-
     return arr.length == 1 ? arr[0] : 0;
 }
 
 //从栈顶往栈底计算
 function getResult(arr){
     while(true){
-        if (arr.length < 2) break;
+        if (arr.length < 2) return;
 
         let last = arr.pop();
 
@@ -71,7 +75,7 @@ function getResult(arr){
             if (last_p == "("){ //停止循环
                 arr.push("(");
                 arr.push(last);
-                break;
+                return;
             }
             else{ //last_p 为 + 或 -
                 last = parseInt(last);
@@ -80,4 +84,93 @@ function getResult(arr){
             }
         }
     }
+}
+
+/**
+ * 将字符串表达式转成后缀表达式，再用栈来实现求值
+ * @param s 如: (((10+1)-(33-10+3)-(10))) + (12) - (12+3) + (((10)-10))
+ * ["10", "1", "+", "33", "10", "-", 3, "+", "-", "10", -, 12, "+", "12", "3", "+", "-", "10", "10", "-", "+"]
+ * ["11", "23", 3, "+", "-", "10", -, 12, "+", "12", "3", "+", "-", "10", "10", "-", "+"]
+ * ["-15", "10", -, 12, "+", "12", "3", "+", "-", "10", "10", "-", "+"]
+ * ["-13","12", "3", "+", "-", "10", "10", "-", "+"]
+ * ["-28", "10", "10", "-", "+"]
+ * ["-28"]
+ */
+var calculate2 = function(s){
+    let arr = arr1 = arr2 = [], temp = '', num = 0, hasSign = false, signOK = true;
+    for (let i = 0; i < s.length; i++){
+        temp = s[i];
+        if (temp == ' ') continue;
+        else if (temp == '('){
+            arr1.push(temp);
+        }
+        else if (temp == ')'){
+
+        }
+        else if(temp == '+'){
+
+        }
+        else if(temp == '-'){
+
+        }
+        else{ //数字
+
+        }
+    }
+}
+
+/**
+ * 执行用时 :16 ms, 在所有 C++ 提交中击败了93.43%的用户
+ * 内存消耗 :10.5 MB, 在所有 C++ 提交中击败了69.92%的用户
+ */
+/**
+ * 按顺序计算，存储左括号前面的运算符，碰到“-”号，后面匹配的数字为相反数。相当于去括号计算
+ * @param s
+ * @return {number}
+ * 执行用时 :112 ms, 在所有 JavaScript 提交中击败了88.14%的用户
+ * 内存消耗 :36.8 MB, 在所有 JavaScript 提交中击败了94.12%的用户
+ */
+var calculate3 = function(s){
+    let arr = [], sum = 0, num = 0, flag = 1;
+    s = "+" + s; //前面加一个+号
+
+    for (let i = 0; i < s.length; i++){
+
+        if (s[i] == '+' || s[i] == '-'){ //+-后面可能为数字/空格/左括号
+            temp = s[i];
+            let need_up = false;
+            while(s[i+1] < '0' || s[i+1] > '9'){
+                if (s[i+1] == '('){  //将左括号前面的符号压入栈。一个左括号匹配一个+-号
+                    need_up = true;
+                    arr.push(temp);
+                }
+                i++;
+            }
+
+            //+-号后面的数字，或者+-号后面口号里面的数字
+            while(s[i+1] >= '0' && s[i+1] <= '9'){
+                num = num*10 + (s[i+1] - '0'); //拼接完整数字
+                i++;
+            }
+
+            if (temp == '+'){
+                sum += flag * num;
+            }
+            else{
+                sum -= flag * num;
+            }
+            num = 0;
+
+            if (need_up && arr[arr.length-1] == '-'){
+                flag *= (-1); //如果左括号前是-号，flag需要反转
+            }
+        }
+        else if(s[i] == ')'){
+            if (arr[arr.length-1] == '-'){
+                flag *= (-1); //移除-号时，flag需要反转
+            }
+            arr.pop(); //碰到右括号移除一个运算符
+        }
+    }
+    return sum;
 }
