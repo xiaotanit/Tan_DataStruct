@@ -164,6 +164,7 @@ const BinarySearchTree = function(){
         }
 
         if (node.element == element){
+            size--;
             //node没有左子树
             if (node.left == null){
                 return node.right;
@@ -199,6 +200,10 @@ const BinarySearchTree = function(){
         }
     }
 
+    function length(){
+        return size;
+    }
+
 
     this.insertBST = insertBST;  //插入元素
     this.inOrder = inOrder;      //中序遍历
@@ -208,6 +213,7 @@ const BinarySearchTree = function(){
     this.getMax = getMax;        //获取最大值
     this.isExist = isExist;      //是否存在某个元素
     this.remove = remove;       //删除某个元素
+    this.length = length;      //节点个数
 }
 
 
